@@ -4,7 +4,7 @@ public class Car {
     private Engine engine;
     private FuelCapacity fuelCapacity;
 
-    public Car(String category, FuelType fuelType, int engineConsumption, int fuelCapacity) {
+    public Car(String category, FuelType fuelType, int engineConsumption, int capacity) {
         this.category = category;
         engine = new Engine(fuelType, engineConsumption);
         fuelCapacity = new FuelCapacity(fuelType, capacity);
@@ -22,7 +22,7 @@ public class Car {
     public int refuel(FuelType fuelType, int amount) {
         int freeCapacity = fuelCapacity.getCapacity() - fuelCapacity.getAvailableFuel();
         if (freeCapacity < amount) {
-            fuelCapacity.supply(fuelType, freeCapacity)(fuelType, freeCapacity);
+            fuelCapacity.supply(fuelType, freeCapacity);
             return freeCapacity;
         } else {
             fuelCapacity.supply(fuelType, amount);
