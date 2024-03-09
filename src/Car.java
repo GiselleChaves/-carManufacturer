@@ -20,16 +20,16 @@ public class Car {
 
     // Returns the actual amount fueled
     public int refuel(FuelType fuelType, int amount) {
-        int freeCapacity = fuelCapacity.getCapacity() - fuelCapacity.getAvailableFuel();
-        if (freeCapacity < amount) {
-            fuelCapacity.supply(fuelType, freeCapacity);
-            return freeCapacity;
+        int maxRefuelAmount;
+        if(fuelType == FuelType.ALCOOL){
+            maxRefuelAmount = Math.min(amount, 6 - fuelCapacity.getAvailableFuel());
         } else {
-            fuelCapacity.supply(fuelType, amount);
-            return amount;
+            maxRefuelAmount = Math.min(amount, 8 - fuelCapacity.getAvailableFuel());
         }
+            fuelCapacity.supply(fuelType, maxRefuelAmount);
+            return maxRefuelAmount;
     }
-
+    
     // Returns the distance it can travel with the remaining fuel
     public int checkIfCanTravel(int distance) {
         int fuelRequired = engine.requiredFuel(distance);
