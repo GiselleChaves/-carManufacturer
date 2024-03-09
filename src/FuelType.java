@@ -1,3 +1,3 @@
 public enum FuelType {
-    FUEL,ALCOOL,FLEX;
+    FUEL, ALCOOL, FLEX;
 }

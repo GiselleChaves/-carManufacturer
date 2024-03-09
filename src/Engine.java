@@ -1,23 +1,37 @@
 public class Engine {
 
     private FuelType engineType;
-    private int consumption; // in kilometers per unit. Ex: Km/Lt
+    private int consumption;
     private int mileage;
+    private int fuelConsumption;
+    private int alcoholConsumption;
 
     public Engine(FuelType engineType, int consumption) {
+        if (engineType == FuelType.FLEX) {
+            throw new IllegalArgumentException("Flex engine type must have fuel and alcohol consumption set");
+        }
         this.engineType = engineType;
         this.consumption = consumption;
+    }
+
+    public Engine(FuelType engineType, int fuelConsumption, int alcoholConsumption) {
+        if (engineType != FuelType.FLEX) {
+            throw new IllegalArgumentException("fuel and alcohol consumption can only be set for Flex engine type");
+        }
+        this.engineType = engineType;
+        this.fuelConsumption = fuelConsumption;
+        this.alcoholConsumption = alcoholConsumption;
     }
 
     public int getFuelConsumption() {
         return this.consumption;
     }
 
-    public FuelType getEngineType(){
+    public FuelType getEngineType() {
         return this.engineType;
     }
 
-    public int getMileage(){
+    public int getMileage() {
         return this.mileage;
     }
 
@@ -27,6 +41,21 @@ public class Engine {
 
     public void travel(int distance) {
         mileage += distance;
+    }
+
+    public void changeFuelConsumption(FuelType comsumptionType) {
+        if (engineType != FuelType.FLEX)
+            throw new IllegalArgumentException("fuel and alcohol consumption can only be changed for Flex engine type");
+
+        if (comsumptionType == FuelType.FLEX) {
+            this.consumption = this.alcoholConsumption;
+            return;
+        }
+        if (engineType == FuelType.ALCOOL) {
+            this.consumption = this.alcoholConsumption;
+            return;
+        }
+        this.consumption = this.fuelConsumption;
     }
 
     @Override

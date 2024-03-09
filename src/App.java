@@ -1,7 +1,8 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        Car basic = new Car("Basico", FuelType.FUEL, 10, 55);
+        Car basic = new Car.Builder(CarCategory.SPORT, new Engine(FuelType.FUEL, 10),
+                new FuelCapacity(FuelType.FUEL, 10)).build();
 
         System.out.println("Tipos de veiculos:");
         System.out.println(basic);

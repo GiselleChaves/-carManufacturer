@@ -1,17 +1,17 @@
 public class Car {
 
-    private String category;
+    private CarCategory category;
     private Engine engine;
     private FuelCapacity fuelCapacity;
 
-    public Car(String category, FuelType fuelType, int engineConsumption, int capacity) {
-        this.category = category;
-        engine = new Engine(fuelType, engineConsumption);
-        fuelCapacity = new FuelCapacity(fuelType, capacity);
+    private Car(Builder builder) {
+        this.category = builder.category;
+        engine = builder.engine;
+        fuelCapacity = builder.fuelCapacity;
     }
 
     public String getCategory() {
-        return category;
+        return category.name();
     }
 
     public int getAvailableFuel() {
@@ -52,6 +52,22 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car:\n  Model=" + category + "\n  Engine=" + engine + "\n  Tank=" + fuelCapacity;
+        return "Car:\n  Model=" + category.name() + "\n  Engine=" + engine + "\n  Tank=" + fuelCapacity;
+    }
+
+    public static class Builder {
+        private CarCategory category;
+        private Engine engine;
+        private FuelCapacity fuelCapacity;
+
+        public Builder(CarCategory category, Engine engine, FuelCapacity fuelCapacity) {
+            this.category = category;
+            this.engine = engine;
+            this.fuelCapacity = fuelCapacity;
+        }
+
+        public Car build() {
+            return new Car(this);
+        }
     }
 }
