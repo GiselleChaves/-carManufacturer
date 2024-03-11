@@ -16,8 +16,8 @@ public class App {
         sportivoCar.travel(300);
         System.out.println(sportivoCar);
 
-        Car utilitarioCar = new Car.Builder(CarCategory.UTIL, new Engine(FuelType.FLEX, 5),
-                new FuelCapacity(FuelType.FLEX, 70)).build();
+        Car utilitarioCar = new Car.Builder(CarCategory.UTIL, new Engine(FuelType.DIESEL, 5),
+                new FuelCapacity(FuelType.DIESEL, 70)).build();
 
         System.out.println("Tipos de veiculos:");
         System.out.println(utilitarioCar);
@@ -29,7 +29,7 @@ public class App {
         System.out.println("\nViajando com o carro Utilitário");
         utilitarioCar.travel(70);
         utilitarioCar.travel(40);
-        System.out.println(sportCar);
+        System.out.println(utilitarioCar);
 
         Car SuvCar = new Car.Builder(CarCategory.SUV, new Engine(FuelType.FUEL, 8),
                 new FuelCapacity(FuelType.FUEL, 55)).build();
@@ -44,7 +44,7 @@ public class App {
         System.out.println("\nViajando com o carro SUV");
         SuvCar.travel(100);
         SuvCar.travel(120);
-        System.out.println(sportCar);
+        System.out.println(SuvCar);
 
         Car SuvFlexCar = new Car.Builder(CarCategory.SUVFLEX, new Engine(FuelType.FLEX, 6),
                 new FuelCapacity(FuelType.FLEX, 65)).build();
