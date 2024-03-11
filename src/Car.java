@@ -20,6 +20,7 @@ public class Car {
 
     // Returns the actual amount fueled
     public int refuel(FuelType fuelType, int amount) {
+        engine.changeFuelConsumption(fuelType);
         int freeCapacity = fuelCapacity.getCapacity() - fuelCapacity.getAvailableFuel();
         if (freeCapacity < amount) {
             fuelCapacity.supply(fuelType, freeCapacity);
@@ -43,7 +44,7 @@ public class Car {
     // Returns true if managed to travel
     public boolean travel(int distance) {
         if (checkIfCanTravel(distance) >= distance) {
-            engine.travel(distance);
+            engine.travel(distance, category == CarCategory.ECONOMIC);
             fuelCapacity.expend(engine.requiredFuel(distance));
             return true;
         }

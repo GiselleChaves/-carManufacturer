@@ -21,6 +21,7 @@ public class Engine {
         this.engineType = engineType;
         this.fuelConsumption = fuelConsumption;
         this.alcoholConsumption = alcoholConsumption;
+        this.consumption = fuelConsumption;
     }
 
     public int getFuelConsumption() {
@@ -39,8 +40,16 @@ public class Engine {
         return distance / consumption;
     }
 
-    public void travel(int distance) {
+    public void travel(int distance, boolean isEconomic) {
         mileage += distance;
+        if (mileage % 5000 == 0 && isEconomic) {
+            if (consumption >= 10)
+                consumption -= 1;
+            if (alcoholConsumption >= 10)
+                alcoholConsumption -= 1;
+            if (fuelConsumption >= 10)
+                fuelConsumption -= 1;
+        }
     }
 
     public void changeFuelConsumption(FuelType comsumptionType) {
